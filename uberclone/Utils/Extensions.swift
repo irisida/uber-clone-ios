@@ -7,9 +7,11 @@
 
 import UIKit
 
+// entending the UIView
 extension UIView {
     
-    // utility function to make programmatic layout easier.
+    // Utility function to make our
+    // programmatic layout easier.
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
@@ -54,4 +56,23 @@ extension UIView {
     func centerX(inView view: UIView) {
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+    
+    // utility function to center align an element on the X-axis
+    func centerY(inView view: UIView) {
+        centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
 }
+
+extension UITextField {
+    func textField(WithPlaceholder placeholder: String, isSecureTextEntry: Bool) -> UITextField {
+        let tf = UITextField()
+        tf.borderStyle = .none
+        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.textColor = .white
+        tf.isSecureTextEntry = isSecureTextEntry
+        tf.keyboardAppearance = .dark
+        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        return tf
+    }
+}
+
