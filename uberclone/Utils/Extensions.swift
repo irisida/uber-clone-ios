@@ -7,8 +7,42 @@
 
 import UIKit
 
+extension UIColor {
+    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
+        return UIColor.init(red: red/255, green: green/255, blue: blue/255, alpha: 1.0)
+    }
+    
+    static let backgroundColor = UIColor.rgb(red: 25, green: 25, blue: 25)
+    static let mainBlueTint = UIColor.rgb(red: 17, green: 154, blue: 237)
+}
+
 // entending the UIView
 extension UIView {
+    
+    func inputContainerView(image: UIImage, textField: UITextField) -> UIView {
+        let view = UIView()
+        
+        // email icon/image segment
+        let imageView = UIImageView()
+        imageView.image = image
+        imageView.alpha = 0.86
+        view.addSubview(imageView)
+        imageView.centerY(inView: view)
+        imageView.anchor(left: view.leftAnchor, paddingLeft: 10, width: 24, height: 24)
+        
+        // email text field segment
+        view.addSubview(textField)
+        textField.centerY(inView: view)
+        textField.anchor(left: imageView.rightAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 8, paddingBottom: 8)
+        
+        // separator
+        let separatorView = UIView()
+        separatorView.backgroundColor = .lightGray
+        view.addSubview(separatorView)
+        separatorView.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingLeft: 8, height: 0.75)
+        
+        return view
+    }
     
     // Utility function to make our
     // programmatic layout easier.
@@ -71,7 +105,7 @@ extension UITextField {
         tf.textColor = .white
         tf.isSecureTextEntry = isSecureTextEntry
         tf.keyboardAppearance = .dark
-        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
+        tf.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         return tf
     }
 }
