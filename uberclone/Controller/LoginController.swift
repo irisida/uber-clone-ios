@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginController: UIViewController {
-
+    
     //MARK: - proprties
     
     private let titleLabel: UILabel = {
@@ -40,14 +40,10 @@ class LoginController: UIViewController {
         return UITextField().textField(WithPlaceholder: "Password", isSecureTextEntry: true)
     }()
     
-    private let loginButton: UIButton = {
-        let button = UIButton(type: .system)
+    private let loginButton: AuthButton = {
+        let button = AuthButton(type: .system)
         button.setTitle("Sign In", for: .normal)
-        button.setTitleColor(UIColor(white: 1, alpha: 0.7), for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = .mainBlueTint
-        button.layer.cornerRadius = 8
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         return button
     }()
@@ -71,8 +67,8 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-
-
+    
+    
     //MARK: - Selectors
     
     @objc func handleShowSignUp() {
